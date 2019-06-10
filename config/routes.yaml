@@ -1,0 +1,9 @@
+app_task:
+    path: /task/index
+    controller: App\Controller\TaskController::index
+app_form:
+    path: /task/getForm
+    controller: App\Controller\TaskController::getForm
+app_all:
+    path: /task/getAll
+    controller: App\Controller\TaskController::getAll
