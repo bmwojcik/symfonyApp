@@ -40,7 +40,7 @@ class TaskController extends AbstractController
         $countries = new CountriesHelper();
         $countries_data = $countries->getDataFromCountries($countries->getAllCountries());
         
-        if (!intval($data['from_currency'])) {
+        if (!is_numeric($data['from_currency'])) {
             $error['amount'] = "Please enter valid cash amount !";
         }
         if($data['from_currency'] < 0) {

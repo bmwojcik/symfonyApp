@@ -46,7 +46,7 @@ class CountriesHelper {
      * @walute
      */
 
-    public function getDataFromCountries($data) {
+    public function getDataFromCountries(\Httpful\Response $data) : string {
         if (!$data) {
             return false;
         }
@@ -64,7 +64,7 @@ class CountriesHelper {
         }
     }
     
-    public function getSingleCountry($data) {
+    public function getSingleCountry(string $data) {
         if (!$data) {
             return false;
         }

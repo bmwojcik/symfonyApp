@@ -36,7 +36,11 @@ class CurrencyHelper {
 
              
     }
-    public static function convert($from,$to,$amount) {
+    /*
+     * @params from,to,amount - dane do przeliczenia
+     * @return func_get_arg + kasa po przeliczeniu
+     */
+    public static function convert(string $from,string $to,int $amount) {
         
         try {
             $url = self::$_api_url . self::$_live .
