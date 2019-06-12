@@ -15,14 +15,23 @@ use Doctrine\ORM\EntityManagerInterface;
  */
 class TaskController extends AbstractController
 {
+    private $_log;
+    private $_countries;
+    private $_currency;
+    
+    public function __construct () {
+        $this->_log = new Log();
+        $this->_countries = new CountriesHelper();
+//        $this->_currency = new CurrencyHelper();
+    }
+            
     public function index() {
         
-        $countries = new CountriesHelper();
-        $data = $countries->getAllCountries();
+        $data = $this->_countries->getAllCountries();
         if (!$data) {
             return false;
         }
-        $data = $countries->getDataFromCountries($data);
+        $data = $this->_countries->getDataFromCountries($data);
         return $this->render('task/index.html.twig', [
                     'data' => json_decode($data),
         ]);
@@ -37,8 +46,7 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('app_task');
         }
         $data = $request->request->all();
-        $countries = new CountriesHelper();
-        $countries_data = $countries->getDataFromCountries($countries->getAllCountries());
+        $countries_data = $this->_countries->getDataFromCountries($this->_countries->getAllCountries());
         
         if (!is_numeric($data['from_currency'])) {
             $error['amount'] = "Please enter valid cash amount !";
@@ -53,8 +61,8 @@ class TaskController extends AbstractController
                    ]);
         }
      
-        $departure_country = $countries->getSingleCountry($data['departure']);
-        $arrival_country = $countries->getSingleCountry($data['arrival']);
+        $departure_country = $this->_countries->getSingleCountry($data['departure']);
+        $arrival_country = $this->_countries->getSingleCountry($data['arrival']);
       
         $data['departure'] = $departure_country->body->currencies[0]->code;
         $data['arrival'] = $arrival_country->body->currencies[0]->code;
@@ -66,8 +74,7 @@ class TaskController extends AbstractController
         $converted_data['cash'] = round($converted_data['cash'],2);
   
         $entityManager = $this->getDoctrine()->getManager();
-        $log = new Log();
-        $log = $log->save($converted_data);
+        $log = $this->_log->save($converted_data);
 
         $entityManager->persist($log);
         $entityManager->flush();
