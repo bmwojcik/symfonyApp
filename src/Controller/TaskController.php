@@ -32,12 +32,13 @@ class TaskController extends AbstractController
  * @Route("task/getForm")
  */
     public function getForm(Request $request) {
-        
+   
         if(!$request->getMethod() == 'POST') {
             return $this->redirectToRoute('app_task');
         }
         $data = $request->request->all();
         $countries = new CountriesHelper();
+        $countries_data = $countries->getDataFromCountries($countries->getAllCountries());
         
         if (!intval($data['from_currency'])) {
             $error['amount'] = "Please enter valid cash amount !";
@@ -46,10 +47,9 @@ class TaskController extends AbstractController
              $error['amount'] = "Cash amount must be greater than 0 !";
         }
         if(!empty($error)) {
-            $data = $countries->getDataFromCountries($countries->getAllCountries());
                return $this->render('task/index.html.twig', [
-                    'error' => $error,
-                   'data' => json_decode($data),
+                   'error' => $error,
+                   'data' => json_decode($countries_data),
                    ]);
         }
      
@@ -72,8 +72,9 @@ class TaskController extends AbstractController
         $entityManager->persist($log);
         $entityManager->flush();
 
-        return $this->render('task/getForm.html.twig', [
-                    'data' => $converted_data,
+        return $this->render('task/index.html.twig', [
+                    'data' => json_decode($countries_data),
+                    'calculation' => $converted_data,
         ]);
     }
     

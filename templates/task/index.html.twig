@@ -49,6 +49,15 @@
                         {{ error.amount }}
                     </div>
                 {% endif %}
+                
+                {% if calculation is defined %}
+                    <div class="alert alert-success" role="alert">
+                        Travelling from <b>{{ calculation.departure_capital }}</b> to <b> {{calculation.arrival_capital}} </b> , having  {{ calculation.2 }} {{calculation.0}} , would give you
+                        <b> {{ calculation.cash }} </b> {{ calculation.1 }}  
+
+                    </div>
+
+                {% endif %}
                
 
 
