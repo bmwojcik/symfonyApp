@@ -19,7 +19,7 @@ use Httpful\Request;
 
 class CurrencyHelper {
     
-    private static $_api_url = 'http://apilayer.net/api';
+    protected static $_api_url = 'http://apilayer.net/api';
     private static $_live = '/live';
     private static $_convert = '/convert?';
     

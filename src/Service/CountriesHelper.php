@@ -3,9 +3,9 @@
 namespace App\Service;
 use Httpful\Request;
 
-class CountriesHelper {
+class CountriesHelper extends AbstractApiClass {
     
-    private $_api_url = 'https://restcountries.eu';
+    protected $_api_url = 'https://restcountries.eu';
     private $_all_countries_url = '/rest/v2/all';
     private $_single_country_url = '/rest/v2/alpha/';
     
@@ -80,6 +80,25 @@ class CountriesHelper {
             // miejsce na logi
         }
         return false;
+    }
+    /*
+     * gettery i setter
+     */
+    public function setAllCountriesUrl(string $url) {
+        $this->_all_countries_url = $url;
+    }
+    
+    
+    public function getAllCountriesUrl() {
+        return $this->_all_countries_url;
+    }
+    
+       public function setSingleCountriesUrl(string $url) {
+        $this->$_single_country_url = $url;
+    }
+    
+    public function getSingleCountriesUrl() {
+        return $this->$_single_country_url;
     }
 
 }
