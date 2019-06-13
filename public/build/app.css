@@ -1,0 +1,20 @@
+body {
+    background-color: #e5fff9;
+}
+.custom {
+    margin-top:100px;
+    height:500px;
+    width:400px;
+    border: 1px solid lightgrey;
+    vertical-align: center;
+    padding:20px;
+    background-color: white;
+
+}
+.mg-5{
+    margin-top:25px;
+}
+#inputGroup-sizing-default {
+    width: 150px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vYXBwLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHNCQUFzQjtBQUMxQiIsImZpbGUiOiJhcHAuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JheTtcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0=*/
